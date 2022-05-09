@@ -18,9 +18,9 @@ namespace Chess
         White,
         Black
     }
-    class RendChess
+    internal static class RendChess
     {
-        public static Dictionary<Chesses, string[]> RENDER_CHESS = new Dictionary<Chesses, string[]>()
+        public static Dictionary<Chesses, string[]> RENDER_CHESS = new Dictionary<Chesses, string[]>
         {
             {
                 Chesses.Pawn , new string[]
@@ -116,42 +116,22 @@ namespace Chess
     };
     }
 
-    public abstract class Chess
+    public class Chess
     {
-        abstract public Chesses type { get; }
+        public Chess(Chesses chessType) {
+            type = chessType;
+            position = new Vector(0, 0);
+        }
+        public Chesses type { get; }
         public Sides Side { get; set; }
         public char GetChar(int x, int y) => RendChess.RENDER_CHESS[type][y][x];
         public Vector position { get; set; }
-        public Vector[] CanMoveTo { get; set; }
     }
-    public class Empty : Chess {
-        public override Chesses type => Chesses.Empty;
-    }
-    public class Pawn : Chess {
-        public override Chesses type => Chesses.Pawn;
-    }
-    public class Horse : Chess {
-        public override Chesses type => Chesses.Horse;
-    }
-    public class Elephant : Chess {
-        public override Chesses type => Chesses.Elephant;
-    }
-    public class Rook : Chess
-    {
-        public override Chesses type => Chesses.Rook;
-    }
-    public class King : Chess {
-        public override Chesses type => Chesses.King;
-    }
-    public class Queen : Chess {
-        public override Chesses type => Chesses.Queen;
-    }
-
     internal class Program
     {
         static void Main()
         {
-            Console.WriteLine("█▓▒░");
+            
         }
     }
 
